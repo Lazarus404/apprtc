@@ -11,11 +11,16 @@ import cgi
 import json
 import logging
 import os
+import sys
 import random
 import threading
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'third_party'))
+
 import jinja2
 import webapp2
+import httplib2
+import urllib
 from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 
@@ -590,6 +595,23 @@ class ParamsPage(webapp2.RequestHandler):
     params = get_room_parameters(self.request, None, None, None)
     self.response.write(json.dumps(params))
 
+class IcePage(webapp2.RequestHandler):
+  def post(self):
+    h = httplib2.Http()
+    post_data = {'ident': constants.XIRSYS_IDENT,
+                 'secret': constants.XIRSYS_SECRET,
+                 'domain': constants.XIRSYS_DOMAIN,
+                 'application': constants.XIRSYS_APPLICATION,
+                 'room': constants.XIRSYS_ROOM}
+
+    headers = {'Content-type': 'application/x-www-form-urlencoded'}
+
+    resp, content = h.request(constants.XIRSYS_ICE_ENDPOINT, 
+                              "POST", 
+                              urllib.urlencode(post_data),
+                              headers=headers)
+    self.response.write(content)
+
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -599,5 +621,6 @@ app = webapp2.WSGIApplication([
     ('/leave/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)', LeavePage),
     ('/message/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)', MessagePage),
     ('/params', ParamsPage),
+    ('/ice', IcePage),
     ('/r/([a-zA-Z0-9-_]+)', RoomPage),
 ], debug=True)

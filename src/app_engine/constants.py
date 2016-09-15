@@ -16,9 +16,16 @@ TURN_BASE_URL = 'https://computeengineondemand.appspot.com'
 TURN_URL_TEMPLATE = '%s/turn?username=%s&key=%s'
 CEOD_KEY = '4080218913'
 
-ICE_SERVER_BASE_URL = 'https://networktraversal.googleapis.com'
-ICE_SERVER_URL_TEMPLATE = '%s/v1alpha/iceconfig?key=%s'
+ICE_SERVER_BASE_URL = 'http://localhost:8080'
+ICE_SERVER_URL_TEMPLATE = '%s/ice?q=%s'
 ICE_SERVER_API_KEY = os.environ.get('ICE_SERVER_API_KEY')
+
+XIRSYS_ICE_ENDPOINT = "https://service.xirsys.com/ice"
+XIRSYS_IDENT = "async"
+XIRSYS_SECRET = "secret"
+XIRSYS_DOMAIN = "richie.com"
+XIRSYS_APPLICATION = "default"
+XIRSYS_ROOM = "default"
 
 CALLSTATS_PARAMS = {
   'appId': os.environ.get('CALLSTATS_APP_ID'),
