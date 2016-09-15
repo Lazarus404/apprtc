@@ -1,6 +1,10 @@
 [![Build Status](https://travis-ci.org/webrtc/apprtc.svg?branch=master)](https://travis-ci.org/webrtc/apprtc)
 
-# AppRTC Demo Code
+# AppRTC Demo Code (XirSys - ICE)
+
+## Note
+
+This version of the web AppRTC application has been modified to use the XirSys ICE endpoint.  A version of this application using both XirSys ICE and XirSys Signalling will be released with the upcoming v3 of the XirSys platform.
 
 ## Development
 
