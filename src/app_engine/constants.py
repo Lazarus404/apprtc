@@ -21,9 +21,9 @@ ICE_SERVER_URL_TEMPLATE = '%s/ice?q=%s'
 ICE_SERVER_API_KEY = os.environ.get('ICE_SERVER_API_KEY')
 
 XIRSYS_ICE_ENDPOINT = "https://service.xirsys.com/ice"
-XIRSYS_IDENT = "async"
-XIRSYS_SECRET = "secret"
-XIRSYS_DOMAIN = "richie.com"
+XIRSYS_IDENT = "your_ident"
+XIRSYS_SECRET = "your_secret"
+XIRSYS_DOMAIN = "your_domain.com"
 XIRSYS_APPLICATION = "default"
 XIRSYS_ROOM = "default"
 
