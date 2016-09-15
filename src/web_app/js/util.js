@@ -99,11 +99,15 @@ function requestIceServers(iceServerRequestUrl, iceTransports) {
         reject(Error('Error parsing response JSON: ' + response));
         return;
       }
+      if (!!iceServerRequestResponse.e) {
+        reject(Error('Could not acquire ICE string: ' + iceServerRequestResponse.e));
+        return;
+      }
       if (iceTransports !== '') {
         filterIceServersUrls(iceServerRequestResponse, iceTransports);
       }
       trace('Retrieved ICE server information.');
-      resolve(iceServerRequestResponse.iceServers);
+      resolve(iceServerRequestResponse.d.iceServers);
     }).catch(function(error) {
       reject(Error('ICE server request error: ' + error.message));
       return;
